@@ -19,7 +19,8 @@ FLAVORS = {
     'mir-gl' : 'glmark2-mir',
     'mir-glesv2' : 'glmark2-es2-mir',
     'wayland-gl' : 'glmark2-wayland',
-    'wayland-glesv2' : 'glmark2-es2-wayland'
+    'wayland-glesv2' : 'glmark2-es2-wayland',
+    'nexus-glesv2' : 'glmark2-es2-nexus'
 }
 FLAVORS_STR = ", ".join(FLAVORS.keys())
 
@@ -118,7 +119,9 @@ def configure(ctx):
                 ('gbm','gbm', list_contains(Options.options.flavors, 'drm')),
                 ('mirclient','mirclient', list_contains(Options.options.flavors, 'mir')),
                 ('wayland-client','wayland-client', list_contains(Options.options.flavors, 'wayland')),
-                ('wayland-egl','wayland-egl', list_contains(Options.options.flavors, 'wayland'))]
+                ('wayland-egl','wayland-egl', list_contains(Options.options.flavors, 'wayland')),
+                ('nexus','nexus', list_contains(Options.options.flavors, 'nexus')),
+                ('nxpl','nxpl', list_contains(Options.options.flavors, 'nxpl'))]
     for (pkg, uselib, mandatory) in opt_pkgs:
         ctx.check_cfg(package = pkg, uselib_store = uselib,
                       args = '--cflags --libs', mandatory = mandatory)
